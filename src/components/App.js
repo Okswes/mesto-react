@@ -9,6 +9,7 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+    const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = React.useState(false);
     const [selectedCard, setSelectedCard] = React.useState({
         isOpen: false,
         link: '',
@@ -25,6 +26,10 @@ function App() {
 
     function handleAddPlaceClick() {
         setIsAddPlacePopupOpen(true);
+    }
+
+    function handleDeleteCardClick() {
+        setIsDeleteCardPopupOpen(true);
     }
 
     function handleCardClick(props) {
@@ -52,7 +57,7 @@ function App() {
                     onAddPlace={handleAddPlaceClick}
                     onEditAvatar={handleEditAvatarClick}
                     onCardClick={handleCardClick} />
-                
+
 
                 <PopupWithForm title="Обновить аватар" name="avatar" buttonName="Сохранить" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}
                     children={
@@ -68,10 +73,10 @@ function App() {
                     children={
                         <>
                             <input className="popup__item popup__item_el_name" name="author" id="name-input" type="text" required
-                                minLength="2" maxLength="40" pattern="[A-Za-zА-ЯЁа-яё -]{1,}" />
+                                minLength="2" maxLength="40" pattern="[A-Za-zА-ЯЁа-яё -]{1,}" placeholder="Имя" />
                             <span className="popup__error" id="name-input-error"></span>
                             <input className="popup__item popup__item_el_prof" name="job" id="prof-input" type="text" required
-                                minLength="2" maxLength="200" />
+                                minLength="2" maxLength="200" placeholder="Занятие" />
                             <span className="popup__error" id="prof-input-error"></span>
                         </>
                     }
@@ -89,6 +94,8 @@ function App() {
                         </>
                     }
                 />
+
+                <PopupWithForm title="Вы уверены?" name="delete" buttonName="Да" isOpen={isDeleteCardPopupOpen} onClose={closeAllPopups} />
 
                 <ImagePopup card={selectedCard} onClose={closeAllPopups} />
                 <Footer />
