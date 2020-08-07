@@ -39,7 +39,8 @@ function App() {
         .then((newCard) => {
           const newCards = cards.map((c) => c._id === card._id ? newCard : c);
           setCards(newCards);
-        });
+        })
+        .catch(err => console.log(err));
     }
 
     function handleCardDelete(card) {
@@ -47,7 +48,8 @@ function App() {
         .then(() => {
         const newCards = cards.filter((c) => c._id !== card._id);
         setCards(newCards);
-        });
+        })
+        .catch(err => console.log(err));
     }
 
 
